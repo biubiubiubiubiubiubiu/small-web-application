@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="NeteaseDemo:war">
+    <output-path>$PROJECT_DIR$/NeteaseDemo/target</output-path>
+    <root id="archive" name="NeteaseDemo.war">
+      <element id="artifact" artifact-name="NeteaseDemo:war exploded" />
+    </root>
+  </artifact>
+</component>
