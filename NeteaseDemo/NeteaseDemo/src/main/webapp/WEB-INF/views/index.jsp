@@ -7,6 +7,23 @@
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
 </head>
 <body>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <logo><a class="navbar-brand" href="#">Netease Demo</a></logo>
+    <div id= "mynav" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="inline" style="margin-top: auto; margin-bottom: auto">
+            <div >游客您好，请<a href="#">[登录]</a></div>
+        </div>
+        <div class="col-md-7"></div>
+        <div class="myNav col-md-2" align="center">
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="/">首页</a></li>
+                <li><a class="nav-link" href="/" ng-show="false">账务</a></li>
+                <li><a class="nav-link" href="/" ng-show="false">购物车</a></li>
+                <li><a class="nav-link" href="/" ng-show="false">发布</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div ng-view="">
 
 </div>
