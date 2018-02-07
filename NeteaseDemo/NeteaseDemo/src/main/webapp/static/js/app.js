@@ -4,12 +4,6 @@ var App = angular.module('myApp',[
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'angular-md5'
 ]);
-
-App.config(function ($routeProvider){
-    $routeProvider.when('/', {
-        templateUrl: '/static/template/main.html',
-        controller: 'UserController'
-    })
-});
