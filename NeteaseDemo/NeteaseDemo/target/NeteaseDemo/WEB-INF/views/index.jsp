@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
 </head>
-<body>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <logo><a class="navbar-brand" href="#">Netease Demo</a></logo>
+<body ng-controller="MainController">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded" >
+    <logo><a class="navbar-brand" href="/">Netease Demo</a></logo>
     <div id= "mynav" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="inline" style="margin-top: auto; margin-bottom: auto">
-            <div >游客您好，请<a href="/login">[登录]</a></div>
+        <div class="inline col-md-2" style="margin-top: auto; margin-bottom: auto">
+            <div ng-hide={{showWelcome}}>游客您好，请<a href="/login">[登录]</a></div>
+
         </div>
         <div class="col-md-7"></div>
         <div class="myNav col-md-2" align="center">
@@ -35,8 +36,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-md5/0.1.10/angular-md5.min.js"></script>
 <script src="<c:url value='/static/js/app.js' />"></script>
-<script src="<c:url value='/static/js/testService.js' />"></script>
-<script src="<c:url value='/static/js/testController.js' />"></script>
 <script src="<c:url value='/static/js/service/LoginService.js' />"></script>
+<script src="<c:url value='/static/js/controller/MainController.js' />"></script>
 </body>
 </html>

@@ -33,9 +33,4 @@ public class MainController {
         return jsonObject.toString();
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody String loginRequest(@RequestBody String user) {
-        User loginUser = gson.fromJson(user, User.class);
-        return gson.toJson(new TestClass("Success"));
-    }
 }

@@ -22,12 +22,12 @@
                     <form accept-charset="UTF-8" role="form" >
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="UserName" name="userName" type="text" ng-model="userName">
+                                <input class="form-control" placeholder="UserName" name="username" type="text" ng-model="username">
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="password" type="password" ng-model="password" value="">
                             </div>
-                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login" ng-click="submit()">
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login" ng-disabled="!username.length || !password.length" ng-click="submit()">
                         </fieldset>
                     </form>
                 </div>

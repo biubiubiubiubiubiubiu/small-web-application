@@ -1646,7 +1646,7 @@ function setupModuleLoader(window) {
            * @name angular.Module#value
            * @module ng
            * @param {string} name service name
-           * @param {*} object Service instance object.
+           * @param {*} object service instance object.
            * @description
            * See {@link auto.$provide#value $provide.value()}.
            */
@@ -3322,11 +3322,11 @@ function annotate(fn) {
  * are constructor functions, whose instances are responsible for "providing" a factory for a
  * service.
  *
- * Service provider names start with the name of the service they provide followed by `Provider`.
+ * service provider names start with the name of the service they provide followed by `Provider`.
  * For example, the {@link ng.$log $log} service has a provider called
  * {@link ng.$logProvider $logProvider}.
  *
- * Service provider objects can have additional methods which allow configuration of the provider
+ * service provider objects can have additional methods which allow configuration of the provider
  * and its service. Importantly, you can configure what kind of service is created by the `$get`
  * method, or how that service will act. For example, the {@link ng.$logProvider $logProvider} has a
  * method {@link ng.$logProvider#debugEnabled debugEnabled}
