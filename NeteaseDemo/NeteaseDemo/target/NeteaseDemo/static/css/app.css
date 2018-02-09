@@ -20,3 +20,20 @@ div .login-box {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2)
 }
 
+div #exitButton {
+    color: cadetblue;
+    cursor: hand;
+}
+
+ul #customer-nav {
+    margin: 30px;
+}
+
+.tab-div {
+    height: 50px;
+    margin-top: 20px;
+}
+
+.div-content {
+    margin-top: 20px;
+}

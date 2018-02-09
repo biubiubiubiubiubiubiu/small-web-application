@@ -1,42 +1,22 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html ng-app="myApp">
-<head>
-    <title>AngularJS $http Example</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
-</head>
-<body ng-controller="MainController">
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded" >
-    <logo><a class="navbar-brand" href="/">Netease Demo</a></logo>
-    <div id= "mynav" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="inline col-md-2" style="margin-top: auto; margin-bottom: auto">
-            <div ng-hide={{showWelcome}}>游客您好，请<a href="/login">[登录]</a></div>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="nav.jsp"%>
 
-        </div>
-        <div class="col-md-7"></div>
-        <div class="myNav col-md-2" align="center">
-            <ul class="navbar-nav">
-                <li><a class="nav-link" href="/">首页</a></li>
-                <li><a class="nav-link" href="/" ng-show="false">账务</a></li>
-                <li><a class="nav-link" href="/" ng-show="false">购物车</a></li>
-                <li><a class="nav-link" href="/" ng-show="false">发布</a></li>
-            </ul>
-        </div>
+<div class="container">
+    <!-- Nav tabs -->
+    <div class="tab-div">
+        <ul id="customer-nav" class="nav nav-tabs" role="tablist" ng-show="username">
+            <li class="nav-item" ng-show="username">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">所有内容</a>
+            </li>
+            <li class="nav-item" ng-show="type == 1">
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab">未购买的内容</a>
+            </li>
+        </ul>
     </div>
-</nav>
 
-<script src="<c:url value='/static/js/lib/angular.js' />"></script>
-<script src="<c:url value='/static/js/lib/angular-route.js' />"></script>
-<script src="<c:url value='/static/js/lib/angular-cookies.js' />"></script>
-<script src="<c:url value='/static/js/lib/angular-sanitize.js' />"></script>
-<script src="<c:url value='/static/js/lib/angular-resource.js' />"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-md5/0.1.10/angular-md5.min.js"></script>
-<script src="<c:url value='/static/js/app.js' />"></script>
-<script src="<c:url value='/static/js/service/LoginService.js' />"></script>
-<script src="<c:url value='/static/js/controller/MainController.js' />"></script>
-</body>
-</html>
+    <!-- Tab panes -->
+    <div class="div-content tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">this is all items</div>
+        <div class="tab-pane" id="profile" role="tabpanel">this is no items</div>
+    </div>
+</div>
