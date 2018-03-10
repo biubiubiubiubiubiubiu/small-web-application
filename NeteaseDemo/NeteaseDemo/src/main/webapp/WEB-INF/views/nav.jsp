@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html ng-app="myApp">
 <head>
-    <title>AngularJS $http Example</title>
+    <title>java</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
 </head>
@@ -23,7 +23,7 @@
                 <li><a class="nav-link" href="/">首页</a></li>
                 <li><a class="nav-link" href="/" ng-show="type == 1">账务</a></li>
                 <li><a class="nav-link" href="/" ng-show="type == 1">购物车</a></li>
-                <li><a class="nav-link" href="/" ng-show="type == 2">发布</a></li>
+                <li><a class="nav-link" href="/public" ng-show="type == 2">发布</a></li>
             </ul>
         </div>
     </div>

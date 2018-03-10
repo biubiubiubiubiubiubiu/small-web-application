@@ -23,15 +23,12 @@ public class LoginDao implements Serializable{
     public User validUser(User user) {
         String findUserSql = "SELECT * FROM User WHERE username=? AND password=?";
         try {
-            User foundUser = jdbcTemplate.queryForObject(findUserSql, new Object[]{user.getUsername(), user.getPassword()}, new RowMapper<User>() {
-                @Override
-                public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                    User user = new User();
-                    user.setId(resultSet.getInt("id"));
-                    user.setUsername(resultSet.getString("username"));
-                    user.setType(resultSet.getInt("type"));
-                    return user;
-                }
+            User foundUser = jdbcTemplate.queryForObject(findUserSql, new Object[]{user.getUsername(), user.getPassword()}, (resultSet, rowNum) -> {
+                User curr = new User();
+                curr.setId(resultSet.getInt("id"));
+                curr.setUsername(resultSet.getString("username"));
+                curr.setType(resultSet.getInt("type"));
+                return curr;
             });
             return foundUser;
         } catch (Exception e) {

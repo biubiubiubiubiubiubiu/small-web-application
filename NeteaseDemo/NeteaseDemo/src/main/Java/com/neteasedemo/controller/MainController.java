@@ -15,7 +15,6 @@ import com.google.gson.*;
 @RequestMapping(value = "/")
 public class MainController {
 
-    Gson gson = new Gson();
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
         return "index";
@@ -24,6 +23,11 @@ public class MainController {
     @RequestMapping(value= "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
+    }
+
+    @RequestMapping(value = "/public", method = RequestMethod.GET)
+    public String sellerPublic() {
+        return "public";
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

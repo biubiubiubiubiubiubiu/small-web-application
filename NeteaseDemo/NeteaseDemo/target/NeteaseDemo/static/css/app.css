@@ -37,3 +37,54 @@ ul #customer-nav {
 .div-content {
     margin-top: 20px;
 }
+
+.public-tab {
+    border-bottom: 1px solid silver;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.public-tab >h2 {
+    font-size: 20px;
+}
+
+.pic-radio {
+    margin-left: 20px;
+}
+
+img{width:200px; height:200px;}
+
+.itemRow .itemTitle {
+    height: 20px;
+    line-height: 20px;
+    ow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 12%
+}
+
+.v-unit {
+    padding-left: 12%;
+    padding-right: 5px;
+    color: #999
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d22147;
+}
+
+.link {
+    display: block;
+    border-radius: 2px;
+    /*border: 1px solid;*/
+    box-shadow: 1px 1px 1px 1px #888888;
+}
+
+.item-img {
+    padding-left: 12%;
+    padding-top: 10px;
+}
