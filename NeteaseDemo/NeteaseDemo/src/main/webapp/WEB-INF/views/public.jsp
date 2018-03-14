@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="nav.jsp"%>
 <script src="<c:url value='/static/js/controller/SellerController.js' />"></script>
-<script src="<c:url value='/static/js/service/SellerService.js' />"></script>
+<script src="<c:url value='/static/js/service/ItemService.js' />"></script>
 
 <div class="container">
     <div class="public-tab">

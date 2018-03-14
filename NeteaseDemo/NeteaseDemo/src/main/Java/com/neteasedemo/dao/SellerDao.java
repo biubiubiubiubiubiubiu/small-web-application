@@ -73,10 +73,22 @@ public class SellerDao {
     }
 
     public List<Item> getAllItems() {
-        String getAllItemsSql = "SELECT * FROM Item";
+        String getAllItemsSql = "SELECT id, title, price, storage, imageUrl FROM Item";
         List<Item> items;
         try {
-            items = jdbcTemplate.query(getAllItemsSql, itemRowMapper);
+            items = jdbcTemplate.query(getAllItemsSql, (resultSet, i) -> {
+                try {
+                    Item curr = new Item();
+                    curr.setId(resultSet.getInt("id"));
+                    curr.setTitle(new String(resultSet.getBytes("title"), "UTF-8"));
+                    curr.setImageUrl(new String(resultSet.getBytes("imageUrl"), "UTF-8"));
+                    curr.setPrice(resultSet.getFloat("price"));
+                    curr.setStorage(resultSet.getInt("storage"));
+                    return curr;
+                } catch (Exception ex) {
+                    return null;
+                }
+            });
         } catch (Exception ex) {
             logger.error("SellerDao.getAllItems: error during finding all items. \n {}", ex.getMessage());
             return null;
@@ -93,15 +105,22 @@ public class SellerDao {
             logger.error("SellerDao.itemExist: error during finding item. \n {}", ex.getMessage());
             return false;
         }
-        return num == 0;
+        return num != 0;
     }
 
-    public void updateItem(String sql, int id, String updateCol) throws CustomException.UpdateItemException{
+    public void updateItem(Item item) throws CustomException.UpdateItemException{
         try {
-            jdbcTemplate.update(sql, new Object[]{updateCol, id});
+            String updateSql = "UPDATE Item SET title=?, abs=?, introduction=?, price=?, imageUrl=?, storage=? WHERE id=?" ;
+            jdbcTemplate.update(updateSql, new Object[]{item.getTitle().getBytes("UTF-8"),
+                                                        item.getAbs().getBytes("UTF-8"),
+                                                        item.getIntroduction().getBytes("UTF-8"),
+                                                        item.getPrice(),
+                                                        item.getImageUrl().getBytes("UTF-8"),
+                                                        item.getStorage(),
+                                                        item.getId()});
         } catch (Exception ex) {
             logger.error("SellerDao.updateItem: error during updating item. \n {}", ex.getMessage());
-            throw new CustomException.UpdateItemException("SellerDao.updateItem: error during updating item. Wrong col: " + updateCol);
+            throw new CustomException.UpdateItemException("SellerDao.updateItem: error during updating item.");
         }
     }
 

@@ -1,10 +1,29 @@
-App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$location', 'SellerService', 'md5',
+App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$location', 'md5', 'ItemService',
 
-    function MyController($scope, $http,  $cookieStore, $location, SellerService ) {
+    function MyController($scope, $http,  $cookieStore, $location, md5, ItemService ) {
 
         $scope.pic = true;
+        $scope.title = "";
+        var edit = false;
+        var id = 0;
         //the image
         $scope.uploadme;
+
+        if (location.search.split("=")[0].split("?")[1] == "id") {
+            id = location.search.split("=")[1];
+            ItemService.getItemDetail(id).then(function(data){
+                $scope.title = data.title;
+                $scope.abs = data.abs;
+                $scope.imageUrl = data.imageUrl;
+                $scope.text = data.introduction;
+                $scope.price = data.price;
+                $scope.storage = data.storage;
+                edit = true;
+            }, function(errResponse){
+                alert("无法获取该商品信息！");
+            });
+
+        }
 
         function dataURItoBlob(dataURI) {
             var binary = atob(dataURI.split(',')[1]);
@@ -22,6 +41,7 @@ App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$locatio
             // get all ng-models
             var fd = new FormData();
             var input_data = {
+                id: id,
                 title: $scope.title,
                 abs: $scope.abs,
                 introduction: $scope.text,
@@ -32,25 +52,37 @@ App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$locatio
                 // upload picture urls
                 input_data["imageUrl"] = $scope.imageUrl;
                 fd.append('item', JSON.stringify(input_data));
-                SellerService.createWithOutFile(fd).success(function() {
-                    alert("商品信息上传成功！");
-                    window.location.replace("/");
-                }).error(function() {
-                    alert("商品信息上传失败！");
-                    console.log('error');
-                });
+                if (!edit) {
+                    ItemService.createWithOutFile(fd).success(function () {
+                        alert("商品信息上传成功！");
+                        window.location.replace("/");
+                    }).error(function () {
+                        alert("商品信息上传失败！");
+                        console.log('error');
+                    });
+                } else {
+                    ItemService.editItemWithoutFile(fd).success(function() {
+                        alert("商品信息上传成功！");
+                        window.location.replace("/");
+                    }).error(function() {
+                        alert("商品信息上传失败！");
+                        console.log('error');
+                    })
+                }
             } else {
                 // upload locally
                 var imgBlob = $scope.picture;
                 fd.append('file', imgBlob);
                 fd.append('item', JSON.stringify(input_data));
-                SellerService.createWithFile(fd).success(function() {
-                    alert("商品信息上传成功！");
-                    window.location.replace("/");
-                }).error(function() {
-                    alert("商品信息上传失败！");
-                    console.log('error');
-                });
+                if (!edit) {
+                    ItemService.createWithFile(fd).success(function () {
+                        alert("商品信息上传成功！");
+                        window.location.replace("/");
+                    }).error(function () {
+                        alert("商品信息上传失败！");
+                        console.log('error');
+                    });
+                }
             }
         }
 

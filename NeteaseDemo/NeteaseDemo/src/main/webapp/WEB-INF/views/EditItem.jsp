@@ -1,18 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ruofan
-  Date: 2018/2/9
-  Time: 下午4:08
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="nav.jsp"%>
 <script src="<c:url value='/static/js/controller/SellerController.js' />"></script>
 <script src="<c:url value='/static/js/service/ItemService.js' />"></script>
-
 <div class="container">
     <div class="public-tab">
-        <h2>内容发布</h2>
+        <h2>内容修改</h2>
     </div>
     <div class="form-div" ng-controller="SellerController">
         <form name="sellerForm">
@@ -44,7 +36,7 @@
                 <textarea ng-model="text" class="form-control" name="textArea" id="textArea" rows="3" placeholder="2-1000个字符" required></textarea>
             </div>
             <div class="form-group">
-                <label for="storage">初始库存</label>
+                <label for="storage">更新库存</label>
                 <input ng-model="storage" type="number" min="0" name="storage" class="form-control" id="storage" style="width: 140px; display: inline-block" required>件
             </div>
             <div class="form-group">
@@ -55,3 +47,4 @@
         </form>
     </div>
 </div>
+

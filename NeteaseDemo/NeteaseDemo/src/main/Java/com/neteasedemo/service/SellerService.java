@@ -67,21 +67,16 @@ public class SellerService {
 
     public boolean updateItem(String itemString) throws CustomException.ItemNotExistException{
         // transfer json string to map
-        Map<String, String> itemMap = gson.fromJson(itemString, new TypeToken<Map<String, String>>(){}.getType());
-        if (!sellerDao.itemExist(Integer.parseInt(itemMap.get("id")))) {
+        Item item = gson.fromJson(itemString, Item.class);
+        if (!sellerDao.itemExist(item.getId())) {
             logger.error("SellerService.updateItem: item not existed!");
             throw new CustomException.ItemNotExistException("SellerService.updateItem: item not existed!");
         }
-        for (String key: itemMap.keySet()) {
-            if (key.equals("id") || itemMap.get(key) == null) {
-                continue;
-            }
-            try {
-                sellerDao.updateItem(handlers.get(key).generateSql(), Integer.parseInt(itemMap.get("id")), itemMap.get("key"));
-            } catch (CustomException.UpdateItemException ex) {
-                logger.error("SellerService.updateItem: error occurred during updating item, \n {}", itemMap.get(key));
-                return false;
-            }
+        try {
+            sellerDao.updateItem(item);
+        } catch(CustomException.UpdateItemException ex) {
+            logger.error("SellerService.updateItem: error during updating");
+            return false;
         }
         return true;
     }

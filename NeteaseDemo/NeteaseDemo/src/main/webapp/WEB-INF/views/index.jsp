@@ -24,17 +24,20 @@
                 <div class="col-md-3" style="padding-top: 10px" ng-repeat="item in items">
                     <div class="clearfix" ng-if="$index % 4 == 0"></div>
                     <div class="link">
-                        <a href="/detail?id={{item.id}}">
-                            <div class="item-img">
-                                <img src="{{item.imageUrl}}" alt="{{item.title}}">
-                            </div>
-                            <p class="itemTitle">{{item.title}}</p>
-                            <p class="itemTitle">库存: {{item.storage}}</p>
-                            <div style="width: 200px">
+                        <div class="item-div">
+                            <a href="/detail?id={{item.id}}">
+                                <div class="item-img">
+                                    <img class="index-img" src="{{item.imageUrl}}" alt="{{item.title}}">
+                                </div>
+                                <p class="itemTitle">{{item.title}}</p>
+                                <p class="itemTitle">库存: {{item.storage}}</p>
+                            </a>
+                            <div>
                                 <span class="v-unit">￥</span>
                                 <span class="price">{{item.price | number:2}}</span>
+                                <button ng-show="type == 2 && item.storage > 0" class="deleteButton" ng-click="deleteItem(item.id)">删除</button>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

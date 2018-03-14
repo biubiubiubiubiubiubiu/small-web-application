@@ -70,8 +70,8 @@ public class SellerController {
         return new ResponseEntity<>(itemJson, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity getItem(String id) {
+    @RequestMapping(value="/{id}", method = RequestMethod.GET, produces="application/json; charset=utf-8")
+    public @ResponseBody ResponseEntity getItem(@PathVariable(value="id") String id) {
         Item item;
         try {
             item = sellerService.getItem(id);
@@ -84,19 +84,19 @@ public class SellerController {
         return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public @ResponseBody ResponseEntity update(@RequestBody String itemString) {
-//        boolean res;
-//        try {
-//            res = sellerService.updateItem(itemString);
-//        } catch (CustomException.ItemNotExistException ex) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        return res ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//    }
+    @RequestMapping(value="/editWithOutFile", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity editWithoutFile(@RequestParam(value = "item") String itemInfo, HttpServletRequest request) {
+        boolean res;
+        try {
+            res = sellerService.updateItem(itemInfo);
+        } catch (CustomException.ItemNotExistException ex) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return res ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public @ResponseBody ResponseEntity deleteItem(@RequestBody String id) {
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody ResponseEntity deleteItem(@PathVariable(value="id") String id) {
         boolean res;
         try {
             res = sellerService.deleteItem(id);

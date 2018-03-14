@@ -30,6 +30,16 @@ public class MainController {
         return "public";
     }
 
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public String detailPage() {
+        return "itemDetail";
+    }
+
+    @RequestMapping(value = "/itemEdit", method = RequestMethod.GET)
+    public String editItem() {
+        return "EditItem";
+    }
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String test() {
         TestClass testClass = new TestClass("hello");
