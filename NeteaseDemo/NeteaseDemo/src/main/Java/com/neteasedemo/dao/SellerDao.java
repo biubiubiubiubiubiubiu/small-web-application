@@ -40,19 +40,28 @@ public class SellerDao {
     };
 
     private static final Logger logger = LoggerFactory.getLogger(SellerDao.class);
-
-    public boolean createItem(Item item) throws CustomException.ItemAlreadyExistedException {
+    public boolean createItem(Item item) throws CustomException.ItemAlreadyExistedException, CustomException.ItemFullException {
         // check if existing same item
         String retrieveItemSql = "SELECT COUNT(*) FROM Item WHERE title=?";
         int num;
         try {
-            num = jdbcTemplate.queryForObject(retrieveItemSql, new Object[]{item.getTitle()}, Integer.class);
+            num = jdbcTemplate.queryForObject(retrieveItemSql, new Object[]{item.getTitle().getBytes("UTF-8")}, Integer.class);
         } catch (Exception ex) {
             logger.error("SellerDao.createItem: error during finding item. \n {}", ex.getMessage());
             return false;
         }
         if (num > 0) {
             throw new CustomException.ItemAlreadyExistedException("SellerDao.createItem: item already existed!");
+        }
+        String countSql = "SELECT COUNT(*) FROM Item";
+        try {
+            int total = jdbcTemplate.queryForObject(countSql, new Object[]{}, Integer.class);
+            if (total >= 1000) {
+                throw new CustomException.ItemFullException("SellerDao.createItem: storage full!");
+            }
+        } catch (Exception ex) {
+            logger.error("SellerDao.createItem: error during finding item. \n {}", ex.getMessage());
+            return false;
         }
         // add new item to database
         String insertItemSql = "INSERT INTO Item (title, abs, storage, introduction, price, imageUrl) " +

@@ -50,11 +50,13 @@ public class SellerController {
         boolean res = false;
         try {
             res = sellerService.createItem(itemInfo);
+        } catch(CustomException.ItemFullException ex) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception ex) {
             logger.error("SellerController.createItem: error in creating item");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return res ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return res ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

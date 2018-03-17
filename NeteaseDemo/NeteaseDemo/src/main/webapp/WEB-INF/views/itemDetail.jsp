@@ -19,14 +19,16 @@
                 库存：{{item.storage}}件
             </div>
             <div style="padding-top: 20px" ng-show="type == 1">
-                <label for="storage">购买数量</label>
-                <input ng-model="storage" type="number" min="0" name="storage" class="form-control" id="storage" style="width: 140px; display: inline-block" required>件
+                <label for="num">购买数量</label>
+                <input ng-model="num" type="number" min="0" max="{{item.storage}}" name="num" class="form-control" id="num" style="width: 140px; display: inline-block" required>件
             </div>
             <div ng-show="type == 2" style="padding-top: 8%">
                 <button style="cursor: hand" type="button" class="btn btn-primary" ng-click="goEdit()">编辑商品信息</button>
             </div>
             <div ng-show="type == 1" style="padding-top: 8%">
-                <button style="cursor: hand" type="button" class="btn btn-success">确认购买</button>
+                <button ng-click="buy(item.title, item.id, num, item.price)" style="cursor: hand" type="button" class="btn btn-success" ng-class="{'disabled': num == 0 || num > item.storage}">
+                    放入购物车
+                </button>
             </div>
         </div>
     </div>

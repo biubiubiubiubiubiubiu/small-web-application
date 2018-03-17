@@ -37,6 +37,9 @@
                                 <span class="price">{{item.price | number:2}}</span>
                                 <button ng-show="type == 2 && item.storage > 0" class="deleteButton" ng-click="deleteItem(item.id)">删除</button>
                             </div>
+                            <span ng-show="type==1" class="span-bought">
+                                <b class="bought">已购买</b>
+                            </span>
                         </div>
                     </div>
                 </div>

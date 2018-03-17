@@ -25,4 +25,16 @@ public class CustomException {
             super(message);
         }
     }
+
+    public static class ItemFullException extends Exception {
+        public ItemFullException (String message) {
+            super(message);
+        }
+    }
+
+    public static class BuyItemException extends Exception {
+        public BuyItemException (String message) {
+            super(message);
+        }
+    }
 }

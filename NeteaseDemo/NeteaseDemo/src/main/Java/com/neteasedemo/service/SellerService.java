@@ -26,18 +26,20 @@ public class SellerService {
     SellerDao sellerDao;
     Gson gson = new Gson();
 
-    private static HashMap<String, UpdateHandler> handlers = HandlerRegister.registerHandlers();
+    //private static HashMap<String, UpdateHandler> handlers = HandlerRegister.registerHandlers();
     private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
-    public boolean createItem(String itemString) {
+    public boolean createItem(String itemString) throws CustomException.ItemFullException {
         Item item = gson.fromJson(itemString, Item.class);
         try {
-            sellerDao.createItem(item);
+            return sellerDao.createItem(item);
         } catch (CustomException.ItemAlreadyExistedException ex) {
             logger.error("SellerService.createItem: item already existed.");
             return false;
+        } catch (CustomException.ItemFullException ex) {
+            logger.error("SellerService.createItem: item full.");
+            throw ex;
         }
-        return true;
     }
 
     public Item getItem(String id) throws CustomException.ItemNotExistException{
