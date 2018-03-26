@@ -17,7 +17,6 @@ App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$locatio
                 $scope.imageUrl = data.imageUrl;
                 $scope.text = data.introduction;
                 $scope.price = data.price;
-                $scope.storage = data.storage;
                 edit = true;
             }, function(errResponse){
                 alert("无法获取该商品信息！");
@@ -45,7 +44,6 @@ App.controller('SellerController', ['$scope', '$http', '$cookieStore', '$locatio
                 title: $scope.title,
                 abs: $scope.abs,
                 introduction: $scope.text,
-                storage: $scope.storage,
                 price: $scope.price
             };
             if ($scope.pic) {

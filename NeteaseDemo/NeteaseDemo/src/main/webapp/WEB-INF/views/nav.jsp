@@ -21,8 +21,8 @@
         <div class="myNav navbar-right" align="center">
             <ul class="navbar-nav">
                 <li><a class="nav-link" href="/">首页</a></li>
-                <li><a class="nav-link" href="/" ng-show="type == 1">账务</a></li>
-                <li><a class="nav-link" href="/" ng-show="type == 1">购物车</a></li>
+                <li><a class="nav-link" href="/debt" ng-show="type == 1">账务</a></li>
+                <li><a class="nav-link" href="/cart" ng-show="type == 1">购物车</a></li>
                 <li><a class="nav-link" href="/public" ng-show="type == 2">发布</a></li>
             </ul>
         </div>

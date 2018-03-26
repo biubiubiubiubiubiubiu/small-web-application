@@ -31,7 +31,7 @@ public class SellerDao {
                 curr.setIntroduction(new String(resultSet.getBytes("introduction"), "UTF-8"));
                 curr.setImageUrl(new String(resultSet.getBytes("imageUrl"), "UTF-8"));
                 curr.setPrice(resultSet.getFloat("price"));
-                curr.setStorage(resultSet.getInt("storage"));
+                curr.setSold(resultSet.getInt("sold"));
                 return curr;
             } catch (Exception ex) {
                 return null;
@@ -64,12 +64,11 @@ public class SellerDao {
             return false;
         }
         // add new item to database
-        String insertItemSql = "INSERT INTO Item (title, abs, storage, introduction, price, imageUrl) " +
-                "Values (?, ?, ?, ?, ?, ?)";
+        String insertItemSql = "INSERT INTO Item (title, abs, introduction, price, imageUrl) " +
+                "Values (?, ?, ?, ?, ?)";
         try {
             jdbcTemplate.update(insertItemSql, new Object[]{item.getTitle().getBytes("UTF-8"),
                     item.getAbs().getBytes("UTF-8"),
-                    item.getStorage(),
                     item.getIntroduction().getBytes("UTF-8"),
                     item.getPrice(),
                     item.getImageUrl().getBytes("UTF-8")});
@@ -82,7 +81,7 @@ public class SellerDao {
     }
 
     public List<Item> getAllItems() {
-        String getAllItemsSql = "SELECT id, title, price, storage, imageUrl FROM Item";
+        String getAllItemsSql = "SELECT id, title, price, imageUrl, sold FROM Item";
         List<Item> items;
         try {
             items = jdbcTemplate.query(getAllItemsSql, (resultSet, i) -> {
@@ -92,7 +91,7 @@ public class SellerDao {
                     curr.setTitle(new String(resultSet.getBytes("title"), "UTF-8"));
                     curr.setImageUrl(new String(resultSet.getBytes("imageUrl"), "UTF-8"));
                     curr.setPrice(resultSet.getFloat("price"));
-                    curr.setStorage(resultSet.getInt("storage"));
+                    curr.setSold(resultSet.getInt("sold"));
                     return curr;
                 } catch (Exception ex) {
                     return null;
@@ -119,13 +118,12 @@ public class SellerDao {
 
     public void updateItem(Item item) throws CustomException.UpdateItemException{
         try {
-            String updateSql = "UPDATE Item SET title=?, abs=?, introduction=?, price=?, imageUrl=?, storage=? WHERE id=?" ;
+            String updateSql = "UPDATE Item SET title=?, abs=?, introduction=?, price=?, imageUrl=? WHERE id=?" ;
             jdbcTemplate.update(updateSql, new Object[]{item.getTitle().getBytes("UTF-8"),
                                                         item.getAbs().getBytes("UTF-8"),
                                                         item.getIntroduction().getBytes("UTF-8"),
                                                         item.getPrice(),
                                                         item.getImageUrl().getBytes("UTF-8"),
-                                                        item.getStorage(),
                                                         item.getId()});
         } catch (Exception ex) {
             logger.error("SellerDao.updateItem: error during updating item. \n {}", ex.getMessage());

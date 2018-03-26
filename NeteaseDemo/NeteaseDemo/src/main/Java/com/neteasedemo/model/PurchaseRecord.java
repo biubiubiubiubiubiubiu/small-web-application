@@ -8,6 +8,24 @@ public class PurchaseRecord {
     private float price;
     private int num;
     private String recordingTime;
+    private String title;
+    private String imageUrl;
+
+    public String getRecordingTime() {
+        return recordingTime;
+    }
+
+    public void setRecordingTime(String recordingTime) {
+        this.recordingTime = recordingTime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +59,11 @@ public class PurchaseRecord {
         this.num = num;
     }
 
-    public String getTimestamp() {
-        return recordingTime;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setTimestamp(String recordingTime) {
-        this.recordingTime = recordingTime;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

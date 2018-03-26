@@ -40,6 +40,16 @@ public class MainController {
         return "EditItem";
     }
 
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public String getCart() {
+        return "cart";
+    }
+
+    @RequestMapping(value = "/debt", method = RequestMethod.GET)
+    public String getDebt() {
+        return "debt";
+    }
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String test() {
         TestClass testClass = new TestClass("hello");

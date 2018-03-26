@@ -38,13 +38,13 @@ ul #customer-nav {
     margin-top: 20px;
 }
 
-.public-tab {
+.second-tab {
     border-bottom: 1px solid silver;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.public-tab >h2 {
+.second-tab >h2 {
     font-size: 20px;
 }
 
@@ -141,4 +141,56 @@ img{width:200px; height:200px;}
     font-size: 12px;
     transform: rotate(-45deg);
     color: #eee;
+}
+
+.cart-table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: separate;
+    border: 1px solid #d9d9d9;
+    border-width: 0 1px 1px 0;
+    border-radius: 4px;
+    background: #eceeef;
+    border-width: 1px 1px 0
+}
+
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+
+.function-div {
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+.function-div >button {
+    margin-left: 100px;
+    cursor: hand;
+}
+
+.tab-img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+}
+
+.buyPrice {
+    float: left;
+    line-height: 32px;
+    color: #999;
+}
+
+.buy-button {
+    min-width: 8em;
+    float: left;
+    margin-right: 10px;
 }

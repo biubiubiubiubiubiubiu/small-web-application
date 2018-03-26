@@ -47,7 +47,7 @@ public class SellerController {
 
     @RequestMapping(value="/noFile", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity createItemWithoutFile(@RequestParam(value = "item") String itemInfo, HttpServletRequest request) {
-        boolean res = false;
+        boolean res;
         try {
             res = sellerService.createItem(itemInfo);
         } catch(CustomException.ItemFullException ex) {

@@ -9,7 +9,8 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
         createWithOutFile: createWithOutFile,
         editItemWithoutFile: editItemWithoutFile,
         deleteItem: deleteItem,
-        buy: buy
+        toCart: toCart,
+        getPrice: getPrice
     };
 
     return factory;
@@ -79,14 +80,14 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
             })
     }
 
-    function buy(id, num, price) {
+    function toCart(id, num, price) {
         var requestBody = {
             itemId: id,
             num: num,
             price: price,
             recordingTime: new Date().getTime()
         };
-        return $http.post("buyer/toCart", JSON.stringify(requestBody)).then(
+        return $http.post("buyer/cart", JSON.stringify(requestBody)).then(
             function(response) {
                 return response.data;
             },
@@ -96,5 +97,18 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
                 return $q.reject(errResponse);
             }
         )
+    }
+
+    function getPrice(id) {
+        return $http.get("/buyer/buyRecord/price/" + id).then(
+            function(response) {
+                return response.data;
+            },
+
+            function(errResponse){
+                console.error('Error while fetching users');
+                return $q.reject(errResponse);
+            }
+        );
     }
 }]);

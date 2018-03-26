@@ -17,18 +17,18 @@
         <div class="col-md-3 col-md-offset-4 login-box">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Login</h3>
+                    <h3 class="panel-title">请登录</h3>
                 </div>
                 <div class="panel-body" ng-controller="LoginController">
                     <form accept-charset="UTF-8" role="form" >
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="UserName" name="username" type="text" ng-model="username">
+                                <input class="form-control" placeholder="用户名" name="username" type="text" ng-model="username">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" ng-model="password" value="">
+                                <input class="form-control" placeholder="密码" name="password" type="password" ng-model="password" value="">
                             </div>
-                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login" ng-disabled="!username.length || !password.length" ng-click="submit()">
+                            <input class="btn btn-lg btn-primary btn-block" style="cursor: hand" type="submit" value="登录" ng-disabled="!username.length || !password.length" ng-click="submit()">
                         </fieldset>
                     </form>
                 </div>

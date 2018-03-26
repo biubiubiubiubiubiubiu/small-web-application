@@ -8,15 +8,7 @@ public class Item {
     private String introduction;
     private float price;
     private String imageUrl;
-    private int storage;
-
-    public int getStorage() {
-        return storage;
-    }
-
-    public void setStorage(int storage) {
-        this.storage = storage;
-    }
+    private int sold;
 
     public int getId() {
         return id;
@@ -64,5 +56,13 @@ public class Item {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
     }
 }

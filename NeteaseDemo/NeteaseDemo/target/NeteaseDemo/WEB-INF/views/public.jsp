@@ -11,7 +11,7 @@
 <script src="<c:url value='/static/js/service/ItemService.js' />"></script>
 
 <div class="container">
-    <div class="public-tab">
+    <div class="second-tab">
         <h2>内容发布</h2>
     </div>
     <div class="form-div" ng-controller="SellerController">
@@ -44,12 +44,8 @@
                 <textarea ng-model="text" class="form-control" name="textArea" id="textArea" rows="3" placeholder="2-1000个字符" required></textarea>
             </div>
             <div class="form-group">
-                <label for="storage">初始库存</label>
-                <input ng-model="storage" type="number" min="0" name="storage" class="form-control" id="storage" style="width: 140px; display: inline-block" required>件
-            </div>
-            <div class="form-group">
                 <label for="price">价格</label>
-                <input ng-model="price" type="number" step="0.01" min="0" name="storage" class="form-control" id="price" style="width: 140px; display: inline-block" required>元
+                <input ng-model="price" type="number" step="0.01" min="0" name="price" class="form-control" id="price" style="width: 140px; display: inline-block" required>元
             </div>
             <button style="cursor: hand" ng-disabled="sellerForm.$invalid" type="submit" class="btn btn-primary" ng-click="public()">发布</button>
         </form>

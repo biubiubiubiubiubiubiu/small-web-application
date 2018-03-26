@@ -37,4 +37,10 @@ public class CustomException {
             super(message);
         }
     }
+
+    public static class ClearCartException extends Exception {
+        public ClearCartException (String message) {
+            super(message);
+        }
+    }
 }

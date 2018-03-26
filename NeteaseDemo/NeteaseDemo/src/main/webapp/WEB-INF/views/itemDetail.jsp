@@ -15,20 +15,20 @@
                 价格：<span class="v-unit">￥</span>
                 <span class="price">{{item.price | number:2}}</span>
             </div>
-            <div style="width: 200px">
-                库存：{{item.storage}}件
-            </div>
             <div style="padding-top: 20px" ng-show="type == 1">
                 <label for="num">购买数量</label>
-                <input ng-model="num" type="number" min="0" max="{{item.storage}}" name="num" class="form-control" id="num" style="width: 140px; display: inline-block" required>件
+                <input ng-model="num" type="number" min="0" name="num" class="form-control" id="num" style="width: 140px; display: inline-block" required>件
             </div>
             <div ng-show="type == 2" style="padding-top: 8%">
                 <button style="cursor: hand" type="button" class="btn btn-primary" ng-click="goEdit()">编辑商品信息</button>
             </div>
             <div ng-show="type == 1" style="padding-top: 8%">
-                <button ng-click="buy(item.title, item.id, num, item.price)" style="cursor: hand" type="button" class="btn btn-success" ng-class="{'disabled': num == 0 || num > item.storage}">
-                    放入购物车
-                </button>
+                <span class="buy-button">
+                    <button ng-click="toCart(item.title, item.id, num, item.price)" style="cursor: hand" type="button" class="btn btn-success" ng-class="{'disabled': num == null || num == 0 || item.sold==1}">
+                        {{buttonWord}}
+                    </button>
+                </span>
+                <span class="buyPrice" ng-show="item.sold==1">当时购买价格：￥{{price}}</span>
             </div>
         </div>
     </div>
