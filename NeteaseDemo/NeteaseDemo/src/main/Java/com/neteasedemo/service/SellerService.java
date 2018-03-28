@@ -10,14 +10,19 @@ import com.neteasedemo.util.HandlerRegister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.neteasedemo.util.UpdateHandlers.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class SellerService {
@@ -29,8 +34,32 @@ public class SellerService {
     //private static HashMap<String, UpdateHandler> handlers = HandlerRegister.registerHandlers();
     private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
-    public boolean createItem(String itemString) throws CustomException.ItemFullException {
+
+    public String saveFile(MultipartFile file, HttpServletRequest request) {
+        try {
+            String saveDirectory=request.getSession().getServletContext().getRealPath("/");
+            String imageUrl = null;
+            String ext = null;
+            if (file != null && file.getOriginalFilename().length() > 0) {
+                String fileName = file.getOriginalFilename();
+                imageUrl = UUID.randomUUID() + "";
+                ext = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+                String newFileName =  imageUrl + fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+                File newFile = new File(saveDirectory + newFileName);
+                file.transferTo(newFile);
+            }
+            return imageUrl + "_" + ext;
+        } catch (Exception ex) {
+            logger.error("saveFile: error occurred during saving image");
+            return null;
+        }
+    }
+
+    public boolean createItem(String itemString, String filePath) throws CustomException.ItemFullException {
         Item item = gson.fromJson(itemString, Item.class);
+        if (filePath != null) {
+            item.setImageUrl(filePath);
+        }
         try {
             return sellerDao.createItem(item);
         } catch (CustomException.ItemAlreadyExistedException ex) {
@@ -67,9 +96,12 @@ public class SellerService {
         return items;
     }
 
-    public boolean updateItem(String itemString) throws CustomException.ItemNotExistException{
+    public boolean updateItem(String itemString, String filePath) throws CustomException.ItemNotExistException{
         // transfer json string to map
         Item item = gson.fromJson(itemString, Item.class);
+        if (filePath != null) {
+            item.setImageUrl(filePath);
+        }
         if (!sellerDao.itemExist(item.getId())) {
             logger.error("SellerService.updateItem: item not existed!");
             throw new CustomException.ItemNotExistException("SellerService.updateItem: item not existed!");

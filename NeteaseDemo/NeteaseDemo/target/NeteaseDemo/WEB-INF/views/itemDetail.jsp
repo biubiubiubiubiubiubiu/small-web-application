@@ -6,7 +6,7 @@
 <div class="container" ng-controller="DetailController">
     <div class="row col-md-12">
         <div class="col-md-5 detail-div">
-            <img class="detail-img" src="{{item.imageUrl}}">
+            <img class="detail-img" ng-src="{{item.imageUrl}}">
         </div>
         <div class="col-md-7" style="padding-top: 50px;">
             <h2>{{item.title}}</h2>

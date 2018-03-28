@@ -7,6 +7,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
         getAllItems: getAllItems,
         createWithFile: createWithFile,
         createWithOutFile: createWithOutFile,
+        editItemWithFile: editItemWithFile,
         editItemWithoutFile: editItemWithoutFile,
         deleteItem: deleteItem,
         toCart: toCart,
@@ -61,6 +62,15 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
 
     function editItemWithoutFile(formData) {
         return $http.post("/seller/item/editWithOutFile", formData, {
+            transformRequest : angular.identity,
+            headers : {
+                'Content-Type' : undefined
+            }
+        })
+    }
+
+    function editItemWithFile(formData) {
+        return $http.post("/seller/item/editWithFile", formData, {
             transformRequest : angular.identity,
             headers : {
                 'Content-Type' : undefined

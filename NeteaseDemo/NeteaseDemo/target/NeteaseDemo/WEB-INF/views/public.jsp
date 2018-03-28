@@ -33,9 +33,15 @@
                 <div ng-show="pic!=null">上传图片</div>
                 <div>
                     <input ng-model="imageUrl" ng-show="pic" type="text" class="form-control" id="url" placeholder="请输入图片地址">
+                    <div ng-show="pic && (imageUrl == null || imageUrl.length == 0)">
+                        <span style="font-size: 10px;color: red;">图片链接不能为空</span>
+                    </div>
                     <div  ng-show="!pic">
-                        <div><input type="file" fileread="uploadme" file-model="picture"/></div>
-                        <img ng-show="uploadme != null" ng-src="{{uploadme}}" width="200" height="200" alt="Image preview...">
+                        <div><input type="file" fileread="uploadme" file-model="picture" ng-model="pictureFile"/></div>
+                        <img ng-show="uploadme != null && validateUpload" ng-src="{{uploadme}}" width="200" height="200" alt="Image preview...">
+                        <div ng-show="!validateUpload">
+                            <span style="font-size: 10px;color: red;">图片为空，或图片格式，大小不匹配</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,7 +53,7 @@
                 <label for="price">价格</label>
                 <input ng-model="price" type="number" step="0.01" min="0" name="price" class="form-control" id="price" style="width: 140px; display: inline-block" required>元
             </div>
-            <button style="cursor: hand" ng-disabled="sellerForm.$invalid" type="submit" class="btn btn-primary" ng-click="public()">发布</button>
+            <button style="cursor: hand" type="submit" class="btn btn-primary" ng-click="public()">发布</button>
         </form>
     </div>
 </div>

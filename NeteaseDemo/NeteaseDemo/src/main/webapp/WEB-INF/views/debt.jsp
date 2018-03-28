@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tr ng-repeat="record in buyRecord">
-                <td><a href="/detail?id={{record.itemId}}"> <img class="tab-img" src="{{record.imageUrl}}" alt=""></a></td>
+                <td><a href="/detail?id={{record.itemId}}"> <img class="tab-img" ng-src="{{record.imageUrl}}" alt=""></a></td>
                 <td class="text-center"><a href="/detail?id={{record.itemId}}">{{record.title}}</a></td>
                 <td class="text-center">{{record.recordingTime}}</td>
                 <td class="text-center">{{record.num}}</td>
@@ -27,7 +27,7 @@
             <tfoot>
                 <tr>
                     <td colspan="4"><div style="text-align: right;">总计：</div></td>
-                    <td><span class="v-unit">¥</span><span class="value">{{sum}}</span></td>
+                    <td><span class="v-unit">¥</span><span class="value">{{sum | number:2}}</span></td>
                 </tr>
             </tfoot>
         </table>
