@@ -7,7 +7,7 @@
 * Click run and you should see the index page in chrome at your chosen port(default: 8080)
 
 ## War version:
-* 请保证您的tomcat的java版本为1.8
+* 请保证您的tomcat的java版本为1.8, tomcat版本为9.0.0
 * 在工程根目录下使用
 	```
 	mvn clean package
